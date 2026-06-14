@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1ère année — IUT de Troyes | Yodace Meziane</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F5F4F0;
+    --ink: #1A1A1A;
+    --blue: #1A3A5C;
+    --orange: #E8541A;
+    --metal: #8A9099;
+    --light: #E2E0DA;
+    --white: #FAFAF8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(245,244,240,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light);
+  }
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem; letter-spacing: 0.12em;
+    color: var(--orange);
+  }
+  .nav-back {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.82rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--blue); text-decoration: none;
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--orange); }
+
+  /* ── HERO ── */
+  .year-hero {
+    min-height: 50vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding-top: 5rem;
+    background: var(--blue);
+  }
+  .year-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .year-hero-gear {
+    position: absolute; right: -80px; top: 50%; transform: translateY(-50%);
+    width: 340px; height: 340px; opacity: 0.12;
+    animation: spin 30s linear infinite;
+  }
+  @keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+
+  .year-hero-content { text-align: center; z-index: 1; padding: 3rem; }
+  .year-hero-eyebrow {
+    font-family: 'Space Mono', monospace; font-size: 0.7rem;
+    color: var(--orange); letter-spacing: 0.18em; text-transform: uppercase;
+    margin-bottom: 1.25rem; display: block;
+  }
+  .year-hero-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700;
+    color: var(--white); letter-spacing: -0.02em; line-height: 1;
+  }
+  .year-hero-sub {
+    font-family: 'Space Grotesk', sans-serif; font-size: 1rem;
+    color: rgba(255,255,255,0.6); margin-top: 1rem; font-weight: 300;
+  }
+
+  /* ── OBJECTIFS BAND ── */
+  .objectifs {
+    background: var(--white); padding: 4rem 3rem;
+    border-bottom: 1px solid var(--light);
+  }
+  .objectifs-inner { max-width: 900px; margin: 0 auto; }
+  .objectifs-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700;
+    color: var(--blue); margin-bottom: 1.5rem; letter-spacing: -0.02em;
+  }
+  .objectifs-intro {
+    font-size: 0.95rem; line-height: 1.75; color: #4A4A4A;
+    margin-bottom: 2rem;
+  }
+  .ue-list { display: flex; flex-direction: column; gap: 1rem; }
+  .ue-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1.25rem; background: var(--bg);
+    border-left: 3px solid var(--ue-color, var(--orange));
+  }
+  .ue-tag {
+    font-family: 'Space Mono', monospace; font-size: 0.7rem;
+    font-weight: 700; color: var(--ue-color, var(--orange));
+    letter-spacing: 0.1em; flex-shrink: 0; min-width: 50px;
+  }
+  .ue-text { font-size: 0.88rem; line-height: 1.65; color: #4A4A4A; }
+  .ue-item.ue1 { --ue-color: #1A3A5C; }
+  .ue-item.ue2 { --ue-color: #3E8E5C; }
+  .ue-item.ue3 { --ue-color: #4A4A4A; }
+  .ue-item.ue4 { --ue-color: #E8541A; }
+
+  /* ── SAE SECTIONS ── */
+  .sae {
+    padding: 5rem 3rem;
+    border-bottom: 1px solid var(--light);
+  }
+  .sae:nth-child(odd) { background: var(--bg); }
+  .sae:nth-child(even) { background: var(--white); }
+
+  .sae-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 380px 1fr; gap: 3rem;
+    align-items: start;
+  }
+  .sae-inner.reverse { grid-template-columns: 1fr 380px; }
+  .sae-inner.reverse .sae-media { order: 2; }
+
+  .sae-header {
+    display: flex; align-items: center; gap: 1.5rem;
+    margin-bottom: 3rem; max-width: 1100px; margin-left: auto; margin-right: auto;
+  }
+  .sae-num {
+    font-family: 'Space Mono', monospace; font-size: 0.65rem;
+    color: var(--orange); letter-spacing: 0.15em;
+    border: 1px solid var(--orange); padding: 0.3rem 0.6rem;
+    flex-shrink: 0;
+  }
+  .sae-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem); font-weight: 700;
+    color: var(--blue); letter-spacing: -0.02em;
+  }
+  .sae-line { flex: 1; height: 1px; background: var(--light); }
+
+  .sae-media {
+    width: 100%; aspect-ratio: 4/3;
+    background: var(--light);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .sae-media img { width: 100%; height: 100%; object-fit: cover; }
+  .sae-media::before, .sae-media::after {
+    content: ''; position: absolute; background: var(--orange);
+  }
+  .sae-media::before { top: -1px; left: -1px; width: 24px; height: 1px; }
+  .sae-media::after  { top: -1px; left: -1px; height: 24px; width: 1px; }
+  .sae-media-placeholder {
+    font-family: 'Space Mono', monospace; font-size: 0.65rem;
+    color: var(--metal); letter-spacing: 0.1em; text-align: center;
+    padding: 1rem;
+  }
+
+  .sae-content { display: flex; flex-direction: column; gap: 1.5rem; }
+  .sae-objectif {
+    font-size: 0.95rem; line-height: 1.8; color: #3A3A3A;
+  }
+  .sae-objectif strong { color: var(--blue); }
+
+  .sae-block {
+    border-left: 2px solid var(--orange); padding-left: 1.25rem;
+  }
+  .sae-block-label {
+    font-family: 'Space Mono', monospace; font-size: 0.65rem;
+    color: var(--metal); letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 0.5rem; display: block;
+  }
+  .sae-block-text {
+    font-size: 0.88rem; line-height: 1.75; color: #4A4A4A;
+  }
+
+  .sae-techs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
+  .tech-pill {
+    font-family: 'Space Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.08em; color: var(--blue);
+    border: 1px solid var(--blue); padding: 0.2rem 0.55rem;
+  }
+
+  /* ── FOOTER NAV ── */
+  .page-footer-nav {
+    background: var(--ink); padding: 3rem; text-align: center;
+  }
+  .page-footer-nav a {
+    font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--white); text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2); padding: 0.85rem 2rem;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    transition: all 0.2s;
+  }
+  .page-footer-nav a:hover { border-color: var(--orange); color: var(--orange); }
+
+  footer {
+    background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 1.5rem 3rem; text-align: center;
+  }
+  footer p {
+    font-family: 'Space Mono', monospace; font-size: 0.6rem;
+    color: rgba(255,255,255,0.3); letter-spacing: 0.1em;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .sae-inner, .sae-inner.reverse {
+      grid-template-columns: 1fr;
+    }
+    .sae-inner.reverse .sae-media { order: 0; }
+    .sae-media { max-width: 400px; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .objectifs, .sae, .page-footer-nav { padding: 3rem 1.5rem; }
+    .year-hero { min-height: 40vh; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .year-hero-gear { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">// PORTFOLIO — GM</span>
+  <a href="portfolio.html#parcours-but" class="nav-back">
+    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Retour au portfolio
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="year-hero">
+  <svg class="year-hero-gear" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="1">
+    <circle cx="100" cy="100" r="85"/>
+    <circle cx="100" cy="100" r="60"/>
+    <circle cx="100" cy="100" r="20"/>
+    <g stroke-width="1.5">
+      <rect x="93" y="8" width="14" height="24" rx="2"/>
+      <rect x="93" y="168" width="14" height="24" rx="2"/>
+      <rect x="8" y="93" width="24" height="14" rx="2"/>
+      <rect x="168" y="93" width="24" height="14" rx="2"/>
+      <rect x="148" y="30" width="14" height="24" rx="2" transform="rotate(45 155 42)"/>
+      <rect x="30" y="148" width="14" height="24" rx="2" transform="rotate(45 37 160)"/>
+      <rect x="148" y="148" width="14" height="24" rx="2" transform="rotate(-45 155 160)"/>
+      <rect x="30" y="30" width="14" height="24" rx="2" transform="rotate(-45 37 42)"/>
+    </g>
+  </svg>
+  <div class="year-hero-content">
+    <span class="year-hero-eyebrow">BUT Génie Mécanique et Productique</span>
+    <h1 class="year-hero-title">1ère année</h1>
+    <p class="year-hero-sub">IUT de Troyes — 2023 / 2024</p>
+  </div>
+</section>
+
+<!-- OBJECTIFS -->
+<section class="objectifs">
+  <div class="objectifs-inner">
+    <h2 class="objectifs-title">Compétences et objectifs visés</h2>
+    <p class="objectifs-intro">
+      Nous sommes évalués sur quatre Unités d'Enseignement (UE) répondant chacune à un objectif général précis.
+    </p>
+    <div class="ue-list">
+      <div class="ue-item ue1">
+        <span class="ue-tag">UE1</span>
+        <p class="ue-text">
+          L'Unité d'Enseignement 1 constitue un ensemble d'outils scientifiques nécessaires
+          à l'acquisition des compétences techniques.
+        </p>
+      </div>
+      <div class="ue-item ue2">
+        <span class="ue-tag">UE2</span>
+        <p class="ue-text">
+          L'Unité d'Enseignement 2 regroupe les enseignements techniques débouchant
+          sur les compétences métiers.
+        </p>
+      </div>
+      <div class="ue-item ue3">
+        <span class="ue-tag">UE3</span>
+        <p class="ue-text">
+          L'Unité d'Enseignement 3 regroupe les enseignements permettant de mieux comprendre
+          le milieu industriel, dans un objectif de développer les notions d'intégration
+          dans un milieu professionnel.
+        </p>
+      </div>
+      <div class="ue-item ue4">
+        <span class="ue-tag">UE4</span>
+        <p class="ue-text">
+          L'Unité d'Enseignement 4 constitue une mise en situation le plus proche possible
+          de la réalité industrielle. Elle regroupe un ensemble d'activités de synthèse
+          de l'ensemble des compétences acquises.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAE 1.1 -->
+<div class="sae-header">
+  <span class="sae-num">SAÉ 1.1</span>
+  <h2 class="sae-title">Analyse d'un produit grand public</h2>
+  <div class="sae-line"></div>
+</div>
+<section class="sae">
+  <div class="sae-inner">
+    <div class="sae-media sae-media-placeholder">
+      ÉTUDE D'UNE PERCEUSE-VISSEUSE<br>MULTIFONCTIONS — SKIL
+    </div>
+    <div class="sae-content">
+      <p class="sae-objectif">
+        L'objectif de cette SAÉ est d'analyser le produit d'une société concurrente, un outil
+        multifonctions. Nous devons déterminer à quel public ce produit est destiné (novice ou expert)
+        et identifier ses fonctions principales. Cette analyse comprend une évaluation de la qualité,
+        des caractéristiques techniques et des performances de la perceuse-visseuse pour mieux
+        comprendre son positionnement sur le marché.
+      </p>
+      <div class="sae-block">
+        <span class="sae-block-label">Ce que ce travail m'a apporté</span>
+        <p class="sae-block-text">
+          Pouvoir faire la différence entre un objet professionnel et un objet grand public,
+          ainsi que mieux comprendre comment fonctionne ce type d'outils.
+        </p>
+      </div>
+      <div class="sae-block">
+        <span class="sae-block-label">Mon ressenti</span>
+        <p class="sae-block-text">
+          J'ai vraiment aimé participer à ce travail car, pour la première fois, je démontais un outil
+          et voyais ce qu'il y avait à l'intérieur, tout en comprenant son fonctionnement — ce qui est
+          plus difficile que ce qu'il paraît au premier abord.
+        </p>
+      </div>
+      <div class="sae-techs">
+        <span class="tech-pill">Analyse produit</span>
+        <span class="tech-pill">Démontage</span>
+        <span class="tech-pill">Étude marché</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAE 1.2 -->
+<div class="sae-header">
+  <span class="sae-num">SAÉ 1.2</span>
+  <h2 class="sae-title">Motorisation de portail en suivi de pente</h2>
+  <div class="sae-line"></div>
+</div>
+<section class="sae">
+  <div class="sae-inner reverse">
+    <div class="sae-content">
+      <p class="sae-objectif">
+        <strong>Modification de la fixation d'une motorisation de portail</strong> dans le cas
+        d'un fonctionnement en suivi de pente. Dans le cadre de cette SAÉ, je suis missionné de
+        réaliser le rapport de description technique et fonctionnel d'un système de motorisation.
+        Je dois comprendre le fonctionnement de l'appareil et déterminer à quel besoin répond
+        le produit ainsi que l'usage auquel il est destiné.
+      </p>
+      <div class="sae-block">
+        <span class="sae-block-label">Mon ressenti</span>
+        <p class="sae-block-text">
+          Lors de la séance de présentation de la SAÉ, ma première réaction a été : « Oula, comment
+          vais-je m'y prendre ? ». Le projet me semblait impressionnant et un peu intimidant au départ.
+          Mais au fil du travail, en mobilisant les connaissances acquises en cours et en cherchant
+          à répondre à la problématique de façon simple et efficace, des idées ont commencé à émerger
+          naturellement. En quelques heures, l'idée générale du système était déjà bien définie.
+        </p>
+        <p class="sae-block-text" style="margin-top:0.75rem;">
+          J'ai réellement apprécié cette expérience, car elle m'a permis de transformer une situation
+          qui paraissait complexe en un projet concret et réalisable. Cela m'a aussi fait prendre
+          conscience de l'importance de bien comprendre le cahier des charges dès le départ : définir
+          des lignes directrices claires permet de découper une tâche complexe en plusieurs étapes
+          plus simples, ce qui rend le travail bien plus abordable.
+        </p>
+      </div>
+      <div class="sae-techs">
+        <span class="tech-pill">Motorisation</span>
+        <span class="tech-pill">Cinématique</span>
+        <span class="tech-pill">Cahier des charges</span>
+      </div>
+    </div>
+    <div class="sae-media sae-media-placeholder">
+      PORTAIL MOTORISÉ —<br>SUIVI DE PENTE 30°
+    </div>
+  </div>
+</section>
+
+<!-- SAE 1.3 -->
+<div class="sae-header">
+  <span class="sae-num">SAÉ 1.3</span>
+  <h2 class="sae-title">Réglage automatisé sur suremballeuse</h2>
+  <div class="sae-line"></div>
+</div>
+<section class="sae">
+  <div class="sae-inner">
+    <div class="sae-media sae-media-placeholder">
+      POSTER — LE RENOUVEAU DE<br>L'EMBALLAGE DE YAOURT
+    </div>
+    <div class="sae-content">
+      <div class="sae-block" style="border-left-color: var(--blue);">
+        <span class="sae-block-label">Objectif</span>
+        <p class="sae-block-text">
+          Concevoir une adaptation du système de réglage des formats sur une suremballeuse afin
+          de permettre un réglage automatisé et de proposer cette option au client.
+        </p>
+      </div>
+      <div class="sae-block">
+        <span class="sae-block-label">Mon ressenti</span>
+        <p class="sae-block-text">
+          J'ai éprouvé beaucoup de difficultés sur cette SAÉ : à ce moment, je n'étais pas très à l'aise
+          avec la vision en 3D et l'utilisation du logiciel de CAO CATIA V5. Je me suis retrouvé
+          plusieurs fois à rester 2 à 3 heures après les cours pour la retravailler.
+        </p>
+        <p class="sae-block-text" style="margin-top:0.75rem;">
+          Néanmoins, cette expérience fut des plus primordiales pour ma compréhension de ce logiciel
+          et ma gestion du temps. Si c'était à refaire, je le referais.
+        </p>
+      </div>
+      <div class="sae-techs">
+        <span class="tech-pill">CATIA V5</span>
+        <span class="tech-pill">Bride inoxydable</span>
+        <span class="tech-pill">Automatisation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAE 1.4 -->
+<div class="sae-header">
+  <span class="sae-num">SAÉ 1.4</span>
+  <h2 class="sae-title">Organisation structurelle de l'industrie</h2>
+  <div class="sae-line"></div>
+</div>
+<section class="sae">
+  <div class="sae-inner reverse">
+    <div class="sae-content">
+      <div class="sae-block" style="border-left-color: var(--blue);">
+        <span class="sae-block-label">Objectif</span>
+        <p class="sae-block-text">
+          Cette SAÉ consiste à contacter une entreprise possédant un employé titulaire d'un BUT/DUT GMP,
+          puis à la visiter. Il fallait ensuite réaliser un poster sur la visite, expliquant l'activité
+          de l'entreprise, sa localisation, ainsi qu'une interview de la personne diplômée GMP présentant
+          son poste — avec une partie en anglais.
+        </p>
+      </div>
+      <div class="sae-block">
+        <span class="sae-block-label">Mon ressenti</span>
+        <p class="sae-block-text">
+          Ce fut une expérience très plaisante : contacter une entreprise comme un professionnel,
+          venir la visiter et en comprendre le système m'a plongé dans une immersion intense, comme
+          si j'étais déjà un professionnel moi-même. Je l'ai beaucoup apprécié.
+        </p>
+      </div>
+      <div class="sae-techs">
+        <span class="tech-pill">Lisi Aerospace</span>
+        <span class="tech-pill">Visite d'entreprise</span>
+        <span class="tech-pill">Anglais professionnel</span>
+      </div>
+    </div>
+    <div class="sae-media sae-media-placeholder">
+      VISITE — LISI AEROSPACE<br>POSTER & ORGANIGRAMME
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER NAV -->
+<div class="page-footer-nav">
+  <a href="portfolio.html#parcours-but">
+    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Retour au portfolio
+  </a>
+</div>
+
+<footer>
+  <p>© 2025 — YODACE MEZIANE — Génie Mécanique — IUT de Troyes</p>
+</footer>
+
+</body>
+</html>
